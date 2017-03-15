@@ -40,6 +40,7 @@ class Main extends Component {
 
 	addTodoClickHandler() {
 		const { newTodo } = this.state
+		newTodo.map()
 		if (newTodo.trim() === '') {
            	this.clearInput()
             return
@@ -69,7 +70,7 @@ class Main extends Component {
 	render() {
 		const state = this.state
 		return <div className="todoList">
-			<input type="text" value={state.newTodo} onChange={::this.inputChangeHandler}/>
+			<input type="numder" value={state.newTodo} onChange={::this.inputChangeHandler}/>
 			<button 
 				disabled={::this.isAddDisabled()}
 				onClick={::this.addTodoClickHandler}>Add</button>

@@ -31,7 +31,7 @@ gulp.task('dist', ['js', 'assets', 'stylus'], () => {
 
 /* @gulp: js */
 gulp.task('js', callback => {
-	return gulp.src('./src/js/bootstrap.js')
+	return gulp.src('')
         .pipe(plumber())
         .pipe(webpackStream(options, webpack))
         .pipe(gulp.dest('dist/js'))
