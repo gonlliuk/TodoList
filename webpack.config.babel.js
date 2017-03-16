@@ -5,7 +5,7 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin'
 const dev = process.env.NODE_ENV !== 'production'
 
 const options = {
-	devtool: dev ? '#source-map-eval' : null,
+	devtool: dev ? 'eval' : null,
 
     watch: dev,
 
@@ -65,6 +65,8 @@ const options = {
             service: path.resolve(__dirname, 'src/js/service/'),
             libs: path.resolve(__dirname, 'src/js/libs/'),
             apps: path.resolve(__dirname, 'src/js/apps/'),
+            components: path.resolve(__dirname, 'src/js/components/'),
+            containers: path.resolve(__dirname, 'src/js/containers/'),
         }
     },
 
