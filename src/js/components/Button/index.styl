@@ -1,2 +1,45 @@
 .button
-	color black
+	position relative
+	display inline-block
+	
+	box-sizing border-box
+	height 32px
+	
+	padding 6px 20px 8px
+	
+	font-family 'Roboto Thin'
+	font-size 14px
+	
+	border 1px solid #dadada
+	border-radius 2px
+	
+	background #fff
+	
+	cursor pointer
+	
+	text-decoration none
+	vertical-align middle
+	overflow hidden
+	outline none
+	
+	&--blue
+		color #fff
+		background #228fdf
+		border-color #228fdf
+
+		&:hover, &:focus
+			background #3f7ae2
+			border-color #4887ef
+			box-shadow 0 1px 0 0 #e6e2e2
+			
+		&:active
+			color #000
+			background #fff
+		
+	&:disabled
+		cursor default
+		color #c0c0c0
+		background #fff
+		border-color #dadada
+		box-shadow none
+		

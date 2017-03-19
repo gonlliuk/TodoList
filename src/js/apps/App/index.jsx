@@ -22,9 +22,14 @@ ReactDom.render(
 	document.getElementById('app')
 )
 
-export default function onSuccess(user) {
+export default function({user, data}) {
     store.dispatch({
     	type: actions.signIn,
     	payload: user
+    })
+
+    store.dispatch({
+    	type: actions.getTodoList,
+    	payload: data
     })
 }

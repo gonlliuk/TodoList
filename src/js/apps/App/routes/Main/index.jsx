@@ -4,8 +4,6 @@ import { bindActionCreators } from 'redux'
 import * as database from '../../store/actionCreators/database'
 import moment from 'moment'
 
-import './index.styl'
-
 @connect(
 	state => ({
 		user: state.user,
@@ -22,12 +20,6 @@ class Main extends Component {
 		}
 	}
 
-	componentWillReceiveProps(nextProps) {
-		if (nextProps.user.id !== this.props.user.id) {
-			this.props.getTodoList(nextProps.user.id)
-		}
-	}
-
 	mapTodoList() {
 		return this.props.todoList.map(item => {
 			return <li key={item.id}>{item.title}</li>
@@ -40,7 +32,7 @@ class Main extends Component {
 
 	addTodoClickHandler() {
 		const { newTodo } = this.state
-		newTodo.map()
+		
 		if (newTodo.trim() === '') {
            	this.clearInput()
             return

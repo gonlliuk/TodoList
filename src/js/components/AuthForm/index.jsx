@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 import Button from 'components/Button'
 import Input from 'components/Input'
@@ -16,11 +17,10 @@ export default class extends Component {
             disabled: false
         }
 
-        this.errorText = 'Unfortunately, your e-mail or password is incorrect. Please try again.'
-
         this.button = {
             type: 'submit',
-            name: 'Login'
+            name: 'Login',
+            className: 'blue'
         }
 
         this.inputs = [{
@@ -40,7 +40,6 @@ export default class extends Component {
 
     submitHandler(e) {
         e.preventDefault()
-        const _this = this
         const { email, password, error } = this.state
         this.setState({ disabled : true, error: false })
         this.props.login({ email, password})
@@ -54,8 +53,7 @@ export default class extends Component {
 
     isInvalidFields() {
         const { email, password } = this.state
-        const emailValidator = /^\s*[a-zA-Z0-9.-_]+@[a-zA-Z0-9.-_]+\.[a-zA-Z]{2,4}\s*$/g
-        return !(emailValidator.test(email) && password.length >= 8)
+        return !(email.length && password.length)
     }
 
     getDisabledClass() {
@@ -64,12 +62,11 @@ export default class extends Component {
             : ''
     }
 
-    getErrorDiv() {
+    getErrorText() {
         const { error } = this.state
         return error 
-            ? (<div className="auth-form__error">
-                    { this.errorText }
-                </div>)
+            ? (<span>Unfortunately, your e-mail or password is incorrect.<br/>
+                Please try again.</span>)
             : null
     }
 
@@ -94,16 +91,23 @@ export default class extends Component {
                 <span>Welcome</span>
             </div>
             <div className="auth-form__note">
-                <span>Please enter your e-mail and password below to login</span>
+                <span>
+                    Please enter your e-mail and password below<br/>
+                    or<br/>
+                    <Link to="/create_user">Create new account</Link>
+                </span>
             </div>
             <form action={::this.submitHandler}>
                 <div className="auth-form__credentials">
                     { ::this.mapInputs() }
                 </div>
-                { ::this.getErrorDiv() }
+                <div className="auth-form__error">
+                    { ::this.getErrorText() }
+                </div>
                 <div className="auth-form__form-submit">
                     <Button 
                         type={this.button.type} 
+                        className={this.button.className}
                         onClickHandler={::this.submitHandler}
                         isDisabled={::this.isInvalidFields() || disabled}
                         name={this.button.name}/>
