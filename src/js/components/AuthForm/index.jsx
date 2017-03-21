@@ -43,6 +43,11 @@ export default class extends Component {
         const { email, password, error } = this.state
         this.setState({ disabled : true, error: false })
         this.props.login({ email, password})
+            .then(user => {
+                this.setState({
+                    disabled: false
+                })
+            })
             .catch(error => {
                 this.setState({
                     disabled: false,

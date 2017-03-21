@@ -11,7 +11,7 @@ export default class extends Component {
 		const { name, type, onClickHandler, className, isDisabled } = this.props
 		return <button 
 			type={type} 
-            className={`button button--${className} ${ isDisabled ? 'button--disabled' : '' }`}
+            className={`button ${ className ? 'button--' + classname : '' } ${ isDisabled ? 'button--disabled' : '' }`}
             disabled={isDisabled}
             onClick={onClickHandler}>
             {name}
