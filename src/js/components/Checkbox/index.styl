@@ -1,0 +1,37 @@
+.checkbox
+	display inline-block
+	box-sizing border-box
+	
+	margin-top 2px
+	
+	position relative
+
+	border 2px solid #dadada
+	border-radius 50%
+
+	width 20px
+	height 20px
+
+	cursor pointer
+		
+	&--unchecked
+		border-color #dadada
+		
+		&:hover
+			border-color #b3b3b3
+
+	&--checked
+		border-color #0ec172
+		
+		&:hover
+			border-color #0b985b
+			.checkbox__check
+				color #0b985b
+
+	&__check
+		font-size 13px !important
+		color #0ec172
+		
+		position absolute
+		top 2px
+		left 2px

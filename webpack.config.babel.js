@@ -34,13 +34,7 @@ const options = {
         rules: [{
             test: /\.jsx?$/,
             exclude: [/node_modules/, /dist/],
-            use: [{
-            	loader: 'babel-loader',
-            	options: {
-	                presets: ['es2015', 'stage-2', 'react'],
-                    plugins: ['transform-decorators-legacy']
-	            }
-            }]
+            use: ['babel-loader']
         }, {
         	test: /\.styl$/,
         	exclude: [/node_modules/, /dist/],
