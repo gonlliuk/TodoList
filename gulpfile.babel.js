@@ -4,8 +4,6 @@ import util from 'gulp-util'
 import pug from 'gulp-pug'
 import plumber from 'gulp-plumber'
 import stylus from 'gulp-stylus'
-import concat from 'gulp-concat'
-import inlineFonts from 'gulp-inline-fonts'
 import autoprefixer from 'gulp-autoprefixer'
 import server from 'gulp-develop-server'
 import webpackStream from 'webpack-stream'
@@ -14,7 +12,7 @@ import webpack from 'webpack'
 import options from './webpack.config.babel.js'
 
 /* @gulp: default */
-gulp.task('default',['dist', 'watch'], () => {
+gulp.task('default', ['dist', 'watch'], () => {
 	server.listen({
         path: './server.js',
         execArgv: ['--harmony']
@@ -47,7 +45,7 @@ gulp.task('js', callback => {
 /* @gulp: assets */
 gulp.task('assets', () => {
     return gulp.src('src/assets/**/*')
-        .pipe(gulp.dest('dist/'))
+        .pipe(gulp.dest('dist/asssets'))
 })
 
 /* @gulp: stylus */
