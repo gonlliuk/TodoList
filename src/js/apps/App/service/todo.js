@@ -4,19 +4,13 @@ const Service = function() {
 	this.updateTodo = (list, todo) => {
 		if (!list || !todo) return []
 
-		const newList = list.filter(item => item.id !== action.payload.id)
-		let editTodo = list.find(item => item.id === action.payload.id)
-		editTodo = {...editTodo, ...todo}
-		return [...newList, editTodo]
+		let index = list.findIndex(item => item.id === todo.id)
+		list[index] = { ...list[index], ...todo }
+		return [...list]
 	}
 
 	this.toArray = (obj) => {
-		const list = []
-		for (let key in obj) {
-			list.push(obj[key])
-		}
-
-		return list
+		return Object.values(obj)
 	}
 }
 

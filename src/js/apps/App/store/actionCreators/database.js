@@ -16,7 +16,7 @@ export function getTodoList(userId) {
 
 export function addTodo(payload) {
 	return async (dispatch) => {
-		const { todo } = await db.addTodo(payload)
+		const todo = await db.addTodo(payload)
 		dispatch({
 			type: actions.addTodo,
 			payload: todo
@@ -26,7 +26,7 @@ export function addTodo(payload) {
 
 export function removeTodo(payload) {
 	return async (dispatch) => {
-		const { todo } = await db.removeTodo(payload)
+		const todo = await db.removeTodo(payload)
 		dispatch({
 			type: actions.removeTodo,
 			payload: todo
@@ -36,7 +36,7 @@ export function removeTodo(payload) {
 
 export function updateTodo(payload) {
 	return async (dispatch) => {
-		const { todo } = await db.updateTodo(payload)
+		const todo = await db.updateTodo(payload)
 		dispatch({
 			type: actions.updateTodo,
 			payload: todo

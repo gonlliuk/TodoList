@@ -13,7 +13,10 @@ export default class extends Component {
 
 	render() {
 		const { onClickHandler, state } = this.props
-		return <div className={`checkbox__chec ${::this.getClass()}`} onClick={onClickHandler}>
+		return <div 
+			className={`checkbox ${::this.getClass()}`} 
+			title={ state ? 'Check as undone' : 'Check is done'}
+			onClick={onClickHandler}>
 			{
 				state 
 					? <span className="fa fa-check checkbox__check"></span>

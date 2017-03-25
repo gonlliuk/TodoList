@@ -60,7 +60,6 @@ const options = {
             libs: path.resolve(__dirname, 'src/js/libs/'),
             apps: path.resolve(__dirname, 'src/js/apps/'),
             components: path.resolve(__dirname, 'src/js/components/'),
-            containers: path.resolve(__dirname, 'src/js/containers/'),
         }
     },
 
