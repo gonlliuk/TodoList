@@ -22,18 +22,19 @@ export default class extends Component {
 	}
 
 	async clickButtonHandler(e) {
-		const { 
+		let { 
 			state: { input, disabled }, 
 			props: { addItem, user }
 		} = this
+		input = input.trim()
 
-		if (input.trim() === '') return
+		if (input === '') return
 
 		try {
 			this.setState({ disabled: true, error: false })
 			await addItem({
 	            userId: user.id,
-	            todo: {title: input, date: moment().format()}
+	            todo: {title: input, createdAt: moment().format()}
 	        })
 	        this.setState({ disabled: false, input: '' })
 		}
@@ -51,7 +52,7 @@ export default class extends Component {
 					name="input"
 					className="input"
 					value={input}
-					maxlength="140"
+					maxLength="140"
 					onChange={::this.inputChangeHandler}
 					onKeyUp={::this.inputKeyupHandler}
 					placeholder="write task title here"

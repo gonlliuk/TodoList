@@ -1,2 +1,2 @@
-export user from './auth'
-export todoList from './database'
+export auth from './auth'
+export database from './database'

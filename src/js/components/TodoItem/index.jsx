@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
+import moment from 'moment'
 import Checkbox from 'components/Checkbox'
 
 import './index.styl'
@@ -6,6 +7,15 @@ import './index.styl'
 export default class extends Component {
 	constructor(props) {
 		super(props);
+		this.state= {
+			edit: false,
+			disabled: false,
+			title: this.props.item.title
+		}
+	}
+
+	componentWillReceiveProps(nextProps) {
+		this.setState({ title: nextProps.item.title})
 	}
 
 	getClass() {
@@ -19,22 +29,51 @@ export default class extends Component {
 			userId: item.userId,
 			todo: {
 				id: item.id,
-				done: !item.done
+				done: !item.done,
+				updatedAt: moment().format()
 			}
 		})
 	}
 
-	async changeItemTitleHandler() {
+	async editTitle() {
 		const { editItem, item } = this.props
+		let { title, disabled } = this.state
+		const { oldTitle } = this
+		title = title.trim()
 
-		// TODO: get new item title 
-		await editItem({ 
-			userId: item.userId,
-			todo: {
-				id: item.id,
-				title: item.title
-			}
-		})
+		if (title === '' || title === oldTitle ) {
+			this.setState({ edit: false, title: oldTitle })
+			return 
+		}
+		
+		try {
+			this.setState({ disabled: true })
+			await editItem({ 
+				userId: item.userId,
+				todo: {
+					id: item.id,
+					title,
+					updatedAt: moment().format()
+				}
+			})
+			this.setState({ disabled: false, edit: false })
+		}
+		catch(e) {
+			this.setState({ disabled: false })
+		}
+	}
+
+	editTitleHandler() {
+		this.oldTitle = this.state.title
+		this.setState({ edit: true })
+	}
+
+	inputChangeHandler(e) {
+		this.setState({ title: e.target.value })
+	}
+
+	inputKeyupHandler(e) {
+		if (e.keyCode === 13) this.editTitle()
 	}
 
 	async removeHandler() {
@@ -45,13 +84,34 @@ export default class extends Component {
 		})
 	}
 
+	componentDidUpdate(prevProps, prevState) {
+		const { edit } = this.state
+		if (edit) this.refs.input.focus()
+	}
+
 	render() {
-		const { item: { title, done }, removeItem, editItem } = this.props
+		const { item: { done }, removeItem, editItem } = this.props
+		const { edit, title, disabled } = this.state
+
 		return <div className="todo-item">
 			<Checkbox 
 				onClickHandler={::this.changeItemStateHandler} 
 				state={done} />
-			<div className={`todo-item__title ${::this.getClass()}`}>{ title }</div>
+				{
+					edit
+						? <input 
+							type="text"
+							ref="input"
+							value={title}
+							disabled={disabled}
+							onChange={::this.inputChangeHandler}
+							onBlur={::this.editTitle}
+							onKeyUp={::this.inputKeyupHandler}
+							className="todo-item__input input input--borderBottom"/>
+						: <div 
+							onClick={::this.editTitleHandler}
+							className={`todo-item__title ${::this.getClass()}`}>{ title }</div>
+				}
 			<div 
 				className="fa fa-trash todo-item__remove"
 				title="Remove"

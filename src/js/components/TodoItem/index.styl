@@ -21,13 +21,21 @@
 		box-sizing border-box
 		line-height 25px
 		min-width 250px
+		border-bottom 1px solid transparent 
 		word-wrap break-word
 		flex auto
-		padding 0 20px
+		margin 0 20px
+		cursor text
 		
 		&--checked
 			text-decoration line-through
 			color #bbbbbb
+		
+		&:hover
+			border-bottom-color #dadada
+	
+	&__input
+		margin 0 12px
 	
 	&__remove
 		cursor pointer
