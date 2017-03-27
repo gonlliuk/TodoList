@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-import Button from 'components/Button'
-import Input from 'components/Input'
-
 import './index.styl'
 
 export default class extends Component {
@@ -21,12 +18,6 @@ export default class extends Component {
             email: 'The email address is badly formated',
             strongPassword: 'Password should be at least 8 characters',
             samePasswords: 'The passwords you entered do not match',
-        }
-
-        this.button = {
-            type: 'submit',
-            name: 'Create',
-            className: 'blue'
         }
 
         this.inputs = [{
@@ -113,10 +104,11 @@ export default class extends Component {
         const { disabled } = this.state
         return this.inputs.map((input, i) => {
             return <div key={i} className="create-user-form__input">
-                <Input
+                <input
                     type={input.type}
-                    onChangeHandler={::this.inputChangeHandler}
-                    isDisabled={disabled}
+                    className="input"
+                    onChange={(e) => ::this.inputChangeHandler(e.target.value, input.name)}
+                    disabled={disabled}
                     name={input.name}
                     placeholder={input.placeholder}/>
             </div>
@@ -144,12 +136,13 @@ export default class extends Component {
                     { error ? errorText : null }
                 </div>
                 <div className="create-user-form__form-submit">
-                    <Button 
-                        type={this.button.type} 
-                        className={this.button.className}
-                        onClickHandler={::this.submitHandler}
-                        isDisabled={::this.isEmptyFields() || disabled}
-                        name={this.button.name}/>
+                    <button 
+                        type="submit"
+                        className="button button--blue"
+                        onClick={::this.submitHandler}
+                        disabled={::this.isEmptyFields() || disabled}>
+                        Create
+                    </button>
                 </div>
             </form>
         </div>

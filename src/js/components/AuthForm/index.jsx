@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-import Button from 'components/Button'
-import Input from 'components/Input'
-
 import './index.styl'
 
 export default class extends Component {
@@ -15,12 +12,6 @@ export default class extends Component {
             password: '',
             error: false,
             disabled: false
-        }
-
-        this.button = {
-            type: 'submit',
-            name: 'Login',
-            className: 'blue'
         }
 
         this.inputs = [{
@@ -79,10 +70,11 @@ export default class extends Component {
         const { disabled } = this.state
         return this.inputs.map((input, i) => {
             return <div key={i} className="auth-form__input">
-                <Input
+                <input
+                    className="input"
                     type={input.type}
-                    onChangeHandler={::this.inputChangeHandler}
-                    isDisabled={disabled}
+                    onChange={(e) => ::this.inputChangeHandler(e.target.value, input.name)}
+                    disabled={disabled}
                     name={input.name}
                     placeholder={input.placeholder}/>
             </div>
@@ -110,12 +102,13 @@ export default class extends Component {
                     { ::this.getErrorText() }
                 </div>
                 <div className="auth-form__form-submit">
-                    <Button 
-                        type={this.button.type} 
-                        className={this.button.className}
-                        onClickHandler={::this.submitHandler}
-                        isDisabled={::this.isInvalidFields() || disabled}
-                        name={this.button.name}/>
+                    <button 
+                        type="submit"
+                        className="button button--blue"
+                        onClick={::this.submitHandler}
+                        disabled={::this.isInvalidFields() || disabled}>
+                        Login
+                    </button>
                 </div>
             </form>
         </div>
