@@ -12,10 +12,6 @@ import AddItem from 'components/AddItem'
 )
 
 export default class extends Component {
-	constructor(props) {
-		super(props);
-	}
-
 	render() {
 		const { todoList, user, addTodo, updateTodo, removeTodo } = this.props
 		return <div>
