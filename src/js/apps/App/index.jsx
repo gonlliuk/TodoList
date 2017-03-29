@@ -1,35 +1,37 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import { Provider } from 'react-redux'
-import { Router, Route, Redirect } from 'react-router'
-import { syncHistoryWithStore } from 'react-router-redux'
-import { createBrowserHistory }  from 'history'
-import * as Routes from './routes'
+import { AppContainer } from 'react-hot-loader'
 import store from './store'
 import * as actions from './store/constants'
 
-const history = syncHistoryWithStore(createBrowserHistory(), store)
+import App from './app'
 
-ReactDom.render(
-	<Provider store={store}>
-		<Router history={history}>
-			<div>
-				<Route path="/" component={ Routes.Main } />
-				<Redirect from="*" to="/" />
-			</div>
-		</Router>
-	</Provider>,
-	document.getElementById('app')
-)
+const render = (Component) => {
+    ReactDom.render(
+        <AppContainer>
+            <Component/>
+        </AppContainer>,
+        document.getElementById('app')
+    )
+}
+
+render(App)
+
+if (module.hot) {
+    module.hot.accept('./app.jsx', (arg) => {
+        const App = require('./app.jsx').default
+        render(App)
+    })
+}
 
 export default function({user, data}) {
     store.dispatch({
-    	type: actions.signIn,
-    	payload: user
+        type: actions.signIn,
+        payload: user
     })
 
     store.dispatch({
-    	type: actions.getTodoList,
-    	payload: data
+        type: actions.getTodoList,
+        payload: data
     })
 }

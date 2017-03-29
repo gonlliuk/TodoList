@@ -57,7 +57,6 @@ export default class extends Component {
         this.setState({ disabled : true, error: false, errorText: '' })
         this.props.createUser({ email, password })
             .catch(error => {
-                console.log(error)
                 this.setState({
                     disabled: false,
                     error: true,
@@ -67,12 +66,12 @@ export default class extends Component {
     }
 
     isEmptyFields() {
-         const { email, password, confirmPassword } = this.state
-         return ![
+        const { email, password, confirmPassword } = this.state
+        return ![
             email.length,
             password.length,
             confirmPassword.length
-         ].every(item => !!item)
+        ].every(item => !!item)
     }
 
     isValidEmail() {

@@ -7,20 +7,20 @@ import TodoList from 'components/TodoList'
 import AddItem from 'components/AddItem'
 
 @connect(
-	({ todoList, user }) => ({ todoList, user }),
-	(dispatch) => bindActionCreators(databaseActions, dispatch)
+    ({ todoList, user }) => ({ todoList, user }),
+    (dispatch) => bindActionCreators(databaseActions, dispatch)
 )
 
 export default class extends Component {
-	render() {
-		const { todoList, user, addTodo, updateTodo, removeTodo } = this.props
-		return <div>
-			<AddItem addItem={addTodo} user={user}/>
-			<TodoList 
-				editItem={updateTodo} 
-				removeItem={removeTodo} 
-				itemList={todoList} 
-				user={user}/>
-		</div>
-	}
+    render() {
+        const { todoList, user, addTodo, updateTodo, removeTodo } = this.props
+        return <div>
+            <AddItem addItem={addTodo} user={user}/>
+            <TodoList 
+                editItem={updateTodo} 
+                removeItem={removeTodo} 
+                itemList={todoList} 
+                user={user}/>
+        </div>
+    }
 }

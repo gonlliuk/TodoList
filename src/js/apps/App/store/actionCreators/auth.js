@@ -4,8 +4,8 @@ import * as actions from '../actions/auth'
 const auth = new AuthProvider()
 
 export function signOut() {
-	return async (dispatch) => {
-		await auth.signOut()
-		dispatch(actions.signOut())
-	}
+    return async (dispatch) => {
+        await auth.signOut()
+        dispatch(actions.signOut())
+    }
 }

@@ -4,7 +4,7 @@ import CreateUserFormContainer from '../../containers/CreateUserFormContainer'
 
 export default class extends Component {
 
-	render() {
-		return <CreateUserFormContainer />
-	}
+    render() {
+        return <CreateUserFormContainer />
+    }
 }
