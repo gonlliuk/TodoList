@@ -3,7 +3,7 @@ const logger = require('morgan')
 const path = require('path')
 const http = require('http')
 
-const { dist } = require('./make/config')
+const { dist } = require('./build/config')
 
 const app = express()
 const server = http.createServer(app)
