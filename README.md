@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/gonlliuk/TodoList.svg?branch=master)](https://travis-ci.org/gonlliuk/TodoList)
+
 # TodoList
 React + Redux + Webpack 2 + HMR
 
