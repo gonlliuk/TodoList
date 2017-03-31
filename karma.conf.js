@@ -6,10 +6,10 @@ module.exports = config => {
     config.set({
         basePath: '',
         frameworks: ['jasmine'],
-        files: ['./test/spec.js', './test/*.spec.js'],
-        exclude: ['node_modules'],
+        files: ['./test/**/*.spec.js'],
+        exclude: ['node_modules', 'dist', 'build'],
         preprocessors: {
-            './test/*.spec.js': ['webpack']
+            './test/**/*.spec.js': ['webpack']
         },
         webpack: webpackConfig,
         reporters: ['spec'],

@@ -13,8 +13,8 @@ export default class extends Component {
         return <Provider store={store}>
             <Router history={history}>
                 <Switch>
-                    <Route path="/home" component={ Routes.Main } />
-                    <Redirect from="*" to="/home" />
+                    <Route exact path="/" component={ Routes.Main } />
+                    <Redirect from="*" to="/" />
                 </Switch>
             </Router>
         </Provider>

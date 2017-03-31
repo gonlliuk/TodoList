@@ -1,3 +1,5 @@
+
+//Todo: перевести все на свое api.
 const api = {
     backendUrl: 'http://localhost:3000',
     methods: {
@@ -17,7 +19,7 @@ const api = {
         },
         todos: {
             get: {
-                url: '/todos'
+                url: '/todos',
                 method: 'get'
             }
         },

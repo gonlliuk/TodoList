@@ -50,14 +50,6 @@ const options = {
             filename: 'index.html',
             inject: 'body'
         }),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'vendor',
-            minChuncks: Infinity
-        }),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'commons',
-            minChuncks: 2
-        }),
         new CopyWebpackPlugin([{
             from: resolve('src/assets'),
             to: './'

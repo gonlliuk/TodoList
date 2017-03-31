@@ -24,7 +24,6 @@ const initialState = {
 const store = createStore(rootReducer, initialState, applyMiddleware(...middlewares))
 
 if (module.hot) {
-    // Enable Webpack hot module replacement for reducers
     module.hot.accept('./reducers', () => {
         const reducers = require('./reducers/')
         const nextRootReducer = combineReducers({
